@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Municipios de Tamaulipas | Turismo, Historia y Cultura</title>
+    <!-- Google Fonts modernas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS animaciones scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper carrusel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Leaflet mapa interactivo -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader"><div class="loader"></div></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo"><a href="#">🌵 <span>Municipios Tamaulipas</span></a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio" class="active">Inicio</a></li>
+                    <li><a href="#municipios">Municipios</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#caracteristicas">Características</a></li>
+                    <li><a href="#mapa">Mapa</a></li>
+                    <li><a href="#download">Descargar App</a></li>
+                </ul>
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero con video y animación de ondas líquidas -->
+    <section id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <video autoplay muted loop playsinline id="hero-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-desert-dunes-under-a-cloudy-sky-2880-large.mp4" type="video/mp4">
+        </video>
+        <!-- Canvas para efecto de ondas líquidas -->
+        <canvas id="waveCanvas"></canvas>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1500">
+            <h1>Descubre los <span class="highlight">43 Municipios</span><br>de Tamaulipas</h1>
+            <p>Historia, cultura, naturaleza y tradiciones en un solo lugar. Explora la riqueza del noreste mexicano.</p>
+            <div class="hero-buttons">
+                <a href="#municipios" class="btn btn-primary">Explorar ahora <i class="fas fa-arrow-right"></i></a>
+                <a href="https://youtu.be/mLdQpp2I0_w" class="btn btn-outline" target="_blank">Ver video <i class="fas fa-play"></i></a>
+            </div>
+        </div>
+        <div class="scroll-down"><a href="#municipios"><i class="fas fa-chevron-down"></i></a></div>
+    </section>
+
+    <!-- Carrusel de municipios (todos los 43) -->
+    <section id="municipios" class="municipios">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Municipios <span class="highlight">Destacados</span></h2>
+                <p>Los 43 municipios de Tamaulipas</p>
+            </div>
+            <div class="swiper mySwiper" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper" id="swiper-wrapper"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características -->
+    <section id="caracteristicas" class="features">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up"><h2>¿Por qué <span class="highlight">visitar</span> Tamaulipas?</h2><p>Descubre su magia</p></div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100"><div class="icon"><i class="fas fa-mountain"></i></div><h3>Naturaleza</h3><p>Montañas, playas, cascadas y reservas.</p></div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200"><div class="icon"><i class="fas fa-utensils"></i></div><h3>Gastronomía</h3><p>Cabrito, mariscos, zacahuil y dulces.</p></div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300"><div class="icon"><i class="fas fa-church"></i></div><h3>Historia</h3><p>Misiones, haciendas y arquitectura colonial.</p></div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400"><div class="icon"><i class="fas fa-music"></i></div><h3>Cultura</h3><p>Huapango, danzas y tradiciones norteñas.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="gallery">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up"><h2>Galería <span class="highlight">Visual</span></h2><p>Imágenes que capturan la esencia</p></div>
+            <div class="gallery-grid" data-aos="fade-up" id="gallery-grid">
+                <!-- Las imágenes se generarán con JS para mayor dinamismo -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa interactivo con todos los municipios -->
+    <section id="mapa" class="map-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up"><h2>Ubicación <span class="highlight">Interactiva</span></h2><p>Explora los 43 municipios en el mapa</p></div>
+            <div id="map" data-aos="fade-up"></div>
+        </div>
+    </section>
+
+    <!-- Sección descarga app -->
+    <section id="download" class="download-app">
+        <div class="container">
+            <div class="download-content" data-aos="fade-up">
+                <h2>📱 Lleva Tamaulipas en tu bolsillo</h2>
+                <p>Descarga nuestra aplicación móvil hecha con Flutter. Explora los 43 municipios, mapas interactivos, chat con IA y mucho más.</p>
+                <div class="download-buttons">
+                    <a href="#" class="btn-download" id="downloadApkBtn"><i class="fab fa-android"></i> Descargar APK (Android)</a>
+                    <a href="#" class="btn-download" id="downloadIosBtn"><i class="fab fa-apple"></i> Próximamente iOS</a>
+                </div>
+                <div class="qr-code">
+                    <p>O escanea el código QR (demo)</p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ejemplo.com/descargar-app" alt="QR código">
+                </div>
+                <p style="margin-top: 20px; opacity: 0.8;">* El APK estará disponible próximamente. Por ahora es un demo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo"><h3>🌵 Municipios de Tamaulipas</h3><p>Explora, viaja y enamórate de Tamaulipas.</p></div>
+                <div class="footer-links"><h4>Enlaces rápidos</h4><ul><li><a href="#inicio">Inicio</a></li><li><a href="#municipios">Municipios</a></li><li><a href="#galeria">Galería</a></li><li><a href="#download">App</a></li></ul></div>
+                <div class="footer-social"><h4>Síguenos</h4><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 Municipios de Tamaulipas. Todos los derechos reservados.</p></div>
+        </div>
+    </footer>
+
+    <!-- Chatbot flotante -->
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header"><i class="fas fa-robot"></i> Asistente Tamaulipas<button id="close-chat"><i class="fas fa-times"></i></button></div>
+        <div class="chatbot-messages" id="chatMessages"><div class="message bot">¡Hola! Soy tu asistente virtual. Pregúntame sobre los municipios de Tamaulipas 😊</div></div>
+        <div class="chatbot-input"><input type="text" id="chatInput" placeholder="Escribe tu pregunta..."><button id="sendChat"><i class="fas fa-paper-plane"></i></button></div>
+    </div>
+    <button id="openChat" class="open-chat-btn" title="Abre el chatbot"><i class="fas fa-comment-dots"></i></button>
+
+    <!-- Scripts externos -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Script personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>
