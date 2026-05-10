@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Victoria", "Villagrán", "Xicoténcatl"
     ];
     
-    // Coordenadas aproximadas (lat, lon) de cada municipio (centros reales aproximados)
+    // Coordenadas aproximadas (lat, lon) de cada municipio
     const coordenadas = {
         "Abasolo": [23.9325, -98.4286], "Aldama": [23.9478, -98.4102], "Altamira": [22.2728, -97.8350], "Antiguo Morelos": [22.5500, -99.0667],
         "Burgos": [24.9333, -98.8000], "Bustamante": [23.4333, -99.7500], "Camargo": [26.1833, -98.8333], "Casas": [23.7000, -98.7333],
@@ -70,12 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // --- 2. Mapa con todos los 43 municipios ---
-    const map = L.map('map').setView([24.0, -98.5], 6.8); // Vista para cubrir todo Tamaulipas
+    const map = L.map('map').setView([24.0, -98.5], 6.8);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> & CartoDB'
     }).addTo(map);
     
-    // Agregar marcador para cada municipio con coordenadas
     municipios.forEach(mun => {
         const coords = coordenadas[mun];
         if (coords) {
@@ -84,31 +83,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 <img src="https://via.placeholder.com/100x60?text=${encodeURIComponent(mun)}" style="width:100px; border-radius:8px; margin-top:5px;"><br>
                 <a href="#municipios" style="color:#008080;">Ver más</a>
             `);
-        } else {
-            console.warn(`Coordenadas no encontradas para ${mun}`);
         }
     });
     
-    // Ajustar zoom para que se vean todos los marcadores (bounding box aproximado)
-    const bounds = [
-        [22.0, -100.0],  // suroeste
-        [27.6, -97.0]    // noreste
-    ];
+    const bounds = [[22.0, -100.0], [27.6, -97.0]];
     map.fitBounds(bounds);
     
     // --- 3. Galería mejorada con imágenes temáticas ---
     const galleryGrid = document.getElementById('gallery-grid');
     const imagenesGalería = [
-        "https://images.pexels.com/photos/258117/pexels-photo-258117.jpeg", // naturaleza
-        "https://images.pexels.com/photos/161816/beach-caribbean-sea-ocean-161816.jpeg", // playa
-        "https://images.pexels.com/photos/2372720/pexels-photo-2372720.jpeg", // montaña
-        "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // ciudad
-        "https://images.pexels.com/photos/552785/pexels-photo-552785.jpeg", // desierto
-        "https://images.pexels.com/photos/1260323/pexels-photo-1260323.jpeg", // cascada
-        "https://images.pexels.com/photos/257636/pexels-photo-257636.jpeg", // puerto
-        "https://images.pexels.com/photos/2280569/pexels-photo-2280569.jpeg"  // cultura
+        "https://images.pexels.com/photos/258117/pexels-photo-258117.jpeg",
+        "https://images.pexels.com/photos/161816/beach-caribbean-sea-ocean-161816.jpeg",
+        "https://images.pexels.com/photos/2372720/pexels-photo-2372720.jpeg",
+        "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg",
+        "https://images.pexels.com/photos/552785/pexels-photo-552785.jpeg",
+        "https://images.pexels.com/photos/1260323/pexels-photo-1260323.jpeg",
+        "https://images.pexels.com/photos/257636/pexels-photo-257636.jpeg",
+        "https://images.pexels.com/photos/2280569/pexels-photo-2280569.jpeg"
     ];
-    // Duplicar para tener 8 imágenes representativas
     for(let i=0; i<imagenesGalería.length; i++) {
         const imgDiv = document.createElement('div');
         imgDiv.className = 'gallery-item';
@@ -149,7 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
         function drawWaves() {
             ctx.clearRect(0, 0, width, height);
             ctx.beginPath();
-            // Primera onda
             ctx.moveTo(0, height);
             for (let x = 0; x <= width; x += 20) {
                 let y = Math.sin(x * 0.008 + time) * 15 + Math.sin(x * 0.02 + time * 1.5) * 8;
@@ -159,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.fillStyle = 'rgba(0, 128, 128, 0.5)';
             ctx.fill();
             
-            // Segunda onda (más atrás)
             ctx.beginPath();
             ctx.moveTo(0, height);
             for (let x = 0; x <= width; x += 20) {
@@ -182,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         drawWaves();
     }
     
-    // --- Preloader, header scroll, menú hamburguesa, etc. ---
+    // --- Preloader ---
     window.addEventListener('load', () => {
         const preloader = document.getElementById('preloader');
         if(preloader) {
@@ -191,12 +181,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // --- Header scroll effect ---
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) header.classList.add('scrolled');
         else header.classList.remove('scrolled');
     });
     
+    // --- Menú hamburguesa ---
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     if (menuToggle) {
@@ -206,15 +198,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // --- AOS ---
     AOS.init({ duration: 800, once: true, offset: 100 });
     
-    // Botones de descarga
+    // --- Botones de descarga ---
     const downloadApk = document.getElementById('downloadApkBtn');
     const downloadIos = document.getElementById('downloadIosBtn');
     if (downloadApk) downloadApk.addEventListener('click', (e) => { e.preventDefault(); alert('Enlace de descarga próximo.'); });
     if (downloadIos) downloadIos.addEventListener('click', (e) => { e.preventDefault(); alert('Versión iOS en desarrollo.'); });
     
-    // Chatbot (igual que antes)
+    // --- Modal para video de YouTube (reproducir desde el inicio) ---
+    const verVideoBtn = document.getElementById('verVideoBtn');
+    const videoModal = document.getElementById('videoModal');
+    const closeModal = document.querySelector('.close-modal');
+    const youtubeIframe = document.getElementById('youtubeIframe');
+    
+    if (verVideoBtn && videoModal && closeModal && youtubeIframe) {
+        verVideoBtn.addEventListener('click', () => {
+            youtubeIframe.src = "https://www.youtube.com/embed/A_uscrVaIog?autoplay=1&start=0&rel=0";
+            videoModal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+            youtubeIframe.src = '';
+        });
+        
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+                youtubeIframe.src = '';
+            }
+        });
+    }
+    
+    // --- Chatbot ---
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
     const sendBtn = document.getElementById('sendChat');

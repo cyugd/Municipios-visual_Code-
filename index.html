@@ -53,7 +53,8 @@
             <p>Historia, cultura, naturaleza y tradiciones en un solo lugar. Explora la riqueza del noreste mexicano.</p>
             <div class="hero-buttons">
                 <a href="#municipios" class="btn btn-primary">Explorar ahora <i class="fas fa-arrow-right"></i></a>
-                <a href="https://youtu.be/mLdQpp2I0_w" class="btn btn-outline" target="_blank">Ver video <i class="fas fa-play"></i></a>
+                <!-- Botón que abre el modal SIN adelanto -->
+                <a href="javascript:void(0);" class="btn btn-outline" id="verVideoBtn">Ver video <i class="fas fa-play"></i></a>
             </div>
         </div>
         <div class="scroll-down"><a href="#municipios"><i class="fas fa-chevron-down"></i></a></div>
@@ -93,7 +94,7 @@
         <div class="container">
             <div class="section-header" data-aos="fade-up"><h2>Galería <span class="highlight">Visual</span></h2><p>Imágenes que capturan la esencia</p></div>
             <div class="gallery-grid" data-aos="fade-up" id="gallery-grid">
-                <!-- Las imágenes se generarán con JS para mayor dinamismo -->
+                <!-- Las imágenes se generarán con JS -->
             </div>
         </div>
     </section>
@@ -136,6 +137,14 @@
             <div class="footer-bottom"><p>&copy; 2025 Municipios de Tamaulipas. Todos los derechos reservados.</p></div>
         </div>
     </footer>
+
+    <!-- Modal para video de YouTube (reproduce desde el inicio) -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="close-modal">&times;</span>
+            <iframe id="youtubeIframe" width="100%" height="400" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
 
     <!-- Chatbot flotante -->
     <div id="chatbot" class="chatbot">
